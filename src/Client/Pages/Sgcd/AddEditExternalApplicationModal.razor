@@ -1,0 +1,52 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditExternalApplicationModal> _localizer
+
+<EditForm Model="@AddEditExternalApplicationModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditExternalApplicationModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add External Application"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update External Application"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditExternalApplicationModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField ReadOnly For="@(() => AddEditExternalApplicationModel.Id)" @bind-Value="AddEditExternalApplicationModel.Id" Label="@_localizer["Id"]" Variant="Variant.Outlined"/>
+                     </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditExternalApplicationModel.Name)" @bind-Value="AddEditExternalApplicationModel.Name" Label="@_localizer["Name"]" Variant="Variant.Outlined"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditExternalApplicationModel.Description)" @bind-Value="AddEditExternalApplicationModel.Description" Label="@_localizer["Description"]" Variant="Variant.Outlined" Lines="3"/>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Error" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+             @if (AddEditExternalApplicationModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

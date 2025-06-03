@@ -1,0 +1,95 @@
+﻿@page "/dashboard"
+@attribute [Authorize(Policy = Permissions.Dashboards.View)]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Dashboard> _localizer
+
+<HeroTitle Title="@_localizer["Dashboard"]" Description="@_localizer["Real-time statistics on the number of entities created."]" />
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.Apps" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["External Applications"]</MudText>
+                    <MudText Typo="Typo.h5">@ExternalApplicationCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.FolderOpen" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Document Types"]</MudText>
+                    <MudText @bind-Value="@DocumentTypeCount" Typo="Typo.h5">@DocumentTypeCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.AttachFile" Color="Color.Tertiary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Documents"]</MudText>
+                    <MudText @bind-Value="@DocumentCount" Typo="Typo.h5">@DocumentCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.FilePresent" Color="Color.Surface" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Document Matchings"]</MudText>
+                    <MudText @bind-Value="@DocumentMatchingCount" Typo="Typo.h5">@DocumentMatchingCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.LibraryBooks" Color="Color.Error" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Document Versions"]</MudText>
+                    <MudText @bind-Value="@DocumentVersionCount" Typo="Typo.h5">@DocumentVersionCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.Person" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Registered Users"]</MudText>
+                    <MudText Typo="Typo.h5">@UserCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="22" Class="d-flex flex-row pt-6 pb-4" Style="height:110px;">
+                <MudIcon Icon="@Icons.Material.Filled.Badge" Color="Color.Warning" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Registered Roles"]</MudText>
+                    <MudText Typo="Typo.h5">@RoleCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+    <MudSpacer/>
+    <div xs="12" sm="8">
+        <MudPaper Elevation="22" Class="pa-4 border-solid" Style="height:500px; margin-top:20px;" Width="100%">
+            <MudText Align="Align.Center" Typo="Typo.h5" Class="pb-4">
+                <b>@_localizer["Entities created per month during the year"]</b>
+            </MudText>
+            <MudChart ChartType="ChartType.Bar" ChartSeries="@_dataEnterBarChartSeries" XAxisLabels="@_dataEnterBarChartXAxisLabels.Select(a => _localizer[a].Value).ToArray()" Width="100%" Height="350px"></MudChart>
+        </MudPaper>
+    </div>
+    <MudSpacer/>
+    <div xs="12" sm="8">
+        <MudPaper Elevation="22" Class="pa-4 border-solid" Style="height:450px; margin-top:20px;" Width="100%">
+            <MudText Align="Align.Center" Typo="Typo.h5" Class="pb-4">
+                <b>@_localizer["Documents by document type"]</b>
+            </MudText>
+            <MudChart ChartType="ChartType.Donut" InputData="@_pieChartData" InputLabels="@_pieChartLabels" Width="100%" Height="300px"></MudChart>
+        </MudPaper>
+    </div>
+}

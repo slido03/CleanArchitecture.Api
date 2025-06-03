@@ -1,0 +1,385 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>CleanArchitecture.Server</RootNamespace>
+    <AssemblyName>CleanArchitecture.Server</AssemblyName>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DocumentationFile>CleanArchitecture.Server.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <UserSecretsId>aa8b7360-671b-4ab2-99b0-7df28629ef3d</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Permission\**" />
+    <Content Remove="Permission\**" />
+    <EmbeddedResource Remove="Permission\**" />
+    <None Remove="Permission\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net9.0\appsettings.json" />
+    <Content Include="bin\Debug\net9.0\appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="bin\Debug\net9.0\bin\appsettings.Development.json" />
+    <Content Include="bin\Debug\net9.0\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json" />
+    <Content Include="bin\Debug\net9.0\CleanArchitecture.Server.deps.json" />
+    <Content Include="bin\Debug\net9.0\CleanArchitecture.Server.runtimeconfig.json" />
+    <Content Include="bin\Debug\net9.0\CleanArchitecture.Server.staticwebassets.endpoints.json" />
+    <Content Include="bin\Debug\net9.0\CleanArchitecture.Server.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="EPPlus" Version="8.0.5" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Flurl" Version="4.0.0" />
+    <PackageReference Include="Flurl.Http" Version="4.0.2" />
+    <PackageReference Include="Hangfire" Version="1.8.20" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.20" />
+    <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="MailKit" Version="4.12.1" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
+    <PackageReference Include="MimeKit" Version="4.12.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="3.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.5" />
+    <PackageReference Include="System.Net.Http.Json" Version="9.0.5" />
+    <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure.Shared\Infrastructure.Shared.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\v1\Sgcd\" />
+    <Folder Include="Logs\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
+    <None Include="bin\Debug\net9.0\ar\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\AutoMapper.dll" />
+    <None Include="bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll" />
+    <None Include="bin\Debug\net9.0\Azure.Core.dll" />
+    <None Include="bin\Debug\net9.0\Azure.Identity.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\BrowserDebugHost.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\BrowserDebugProxy.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.CodeAnalysis.CSharp.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.CodeAnalysis.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.CodeAnalysis.Scripting.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.FileFormats.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.NET.WebAssembly.Webcil.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Microsoft.SymbolStore.dll" />
+    <None Include="bin\Debug\net9.0\BlazorDebugProxy\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\net9.0\Blazored.FluentValidation.dll" />
+    <None Include="bin\Debug\net9.0\Blazored.LocalStorage.dll" />
+    <None Include="bin\Debug\net9.0\BouncyCastle.Cryptography.dll" />
+    <None Include="bin\Debug\net9.0\Castle.Core.dll" />
+    <None Include="bin\Debug\net9.0\ca\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Application.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Application.pdb" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Domain.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Domain.pdb" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Infrastructure.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Infrastructure.pdb" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Infrastructure.Shared.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Infrastructure.Shared.pdb" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Server.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Server.exe" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Server.pdb" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Shared.dll" />
+    <None Include="bin\Debug\net9.0\CleanArchitecture.Shared.pdb" />
+    <None Include="bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\en\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\en\CleanArchitecture.Infrastructure.resources.dll" />
+    <None Include="bin\Debug\net9.0\en\CleanArchitecture.Server.resources.dll" />
+    <None Include="bin\Debug\net9.0\EPPlus.dll" />
+    <None Include="bin\Debug\net9.0\EPPlus.Interfaces.dll" />
+    <None Include="bin\Debug\net9.0\es\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\es\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\fa\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\FluentValidation.AspNetCore.dll" />
+    <None Include="bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll" />
+    <None Include="bin\Debug\net9.0\FluentValidation.dll" />
+    <None Include="bin\Debug\net9.0\Flurl.dll" />
+    <None Include="bin\Debug\net9.0\Flurl.Http.dll" />
+    <None Include="bin\Debug\net9.0\fr\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\CleanArchitecture.Infrastructure.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\CleanArchitecture.Server.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\Hangfire.AspNetCore.dll" />
+    <None Include="bin\Debug\net9.0\Hangfire.Core.dll" />
+    <None Include="bin\Debug\net9.0\Hangfire.NetCore.dll" />
+    <None Include="bin\Debug\net9.0\Hangfire.SqlServer.dll" />
+    <None Include="bin\Debug\net9.0\Humanizer.dll" />
+    <None Include="bin\Debug\net9.0\id\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\it\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\km\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\LazyCache.AspNetCore.dll" />
+    <None Include="bin\Debug\net9.0\LazyCache.dll" />
+    <None Include="bin\Debug\net9.0\MailKit.dll" />
+    <None Include="bin\Debug\net9.0\MediatR.Contracts.dll" />
+    <None Include="bin\Debug\net9.0\MediatR.dll" />
+    <None Include="bin\Debug\net9.0\MediatR.Extensions.Microsoft.DependencyInjection.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Authorization.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Components.Authorization.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Components.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Components.Forms.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Components.Web.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Components.WebAssembly.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Components.WebAssembly.Server.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Connections.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Http.Connections.Client.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Http.Connections.Common.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Metadata.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.Versioning.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.SignalR.Client.Core.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.SignalR.Client.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.SignalR.Common.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Build.Locator.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.CodeAnalysis.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Proxies.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Features.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Http.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Http.Polly.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Localization.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Localization.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Logging.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Options.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Identity.Client.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IO.RecyclableMemoryStream.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.JSInterop.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.JSInterop.WebAssembly.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.OpenApi.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.SqlServer.Server.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net9.0\MimeKit.dll" />
+    <None Include="bin\Debug\net9.0\Mono.TextTemplating.dll" />
+    <None Include="bin\Debug\net9.0\nb\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\net9.0\nl\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\nl\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\Polly.dll" />
+    <None Include="bin\Debug\net9.0\Polly.Extensions.Http.dll" />
+    <None Include="bin\Debug\net9.0\pt-BR\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt-PT\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\pt\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Text.Encoding.CodePages.dll" />
+    <None Include="bin\Debug\net9.0\ru\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Enrichers.Environment.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Extensions.Hosting.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Extensions.Logging.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Formatting.Compact.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Settings.Configuration.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Sinks.Async.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Sinks.Console.dll" />
+    <None Include="bin\Debug\net9.0\Serilog.Sinks.File.dll" />
+    <None Include="bin\Debug\net9.0\sv\CleanArchitecture.Application.resources.dll" />
+    <None Include="bin\Debug\net9.0\sv\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll" />
+    <None Include="bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+    <None Include="bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+    <None Include="bin\Debug\net9.0\System.ClientModel.dll" />
+    <None Include="bin\Debug\net9.0\System.CodeDom.dll" />
+    <None Include="bin\Debug\net9.0\System.Composition.AttributedModel.dll" />
+    <None Include="bin\Debug\net9.0\System.Composition.Convention.dll" />
+    <None Include="bin\Debug\net9.0\System.Composition.Hosting.dll" />
+    <None Include="bin\Debug\net9.0\System.Composition.Runtime.dll" />
+    <None Include="bin\Debug\net9.0\System.Composition.TypedParts.dll" />
+    <None Include="bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll" />
+    <None Include="bin\Debug\net9.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net9.0\System.Formats.Asn1.dll" />
+    <None Include="bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll" />
+    <None Include="bin\Debug\net9.0\System.Linq.Dynamic.Core.dll" />
+    <None Include="bin\Debug\net9.0\System.Memory.Data.dll" />
+    <None Include="bin\Debug\net9.0\System.Net.Http.Json.dll" />
+    <None Include="bin\Debug\net9.0\System.Net.ServerSentEvents.dll" />
+    <None Include="bin\Debug\net9.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll" />
+    <None Include="bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net9.0\System.Security.Cryptography.Xml.dll" />
+    <None Include="bin\Debug\net9.0\System.Security.Permissions.dll" />
+    <None Include="bin\Debug\net9.0\System.Text.Encoding.CodePages.dll" />
+    <None Include="bin\Debug\net9.0\System.Text.Json.dll" />
+    <None Include="bin\Debug\net9.0\System.Threading.Channels.dll" />
+    <None Include="bin\Debug\net9.0\System.Windows.Extensions.dll" />
+    <None Include="bin\Debug\net9.0\Toolbelt.Blazor.HttpClientInterceptor.dll" />
+    <None Include="bin\Debug\net9.0\tr-TR\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh-TW\Hangfire.Core.resources.dll" />
+    <None Include="bin\Debug\net9.0\zh\Hangfire.Core.resources.dll" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+
+</Project>

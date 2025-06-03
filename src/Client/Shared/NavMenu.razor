@@ -1,0 +1,117 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
+@using System.Security.Claims
+
+<UserCard />
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@_localizer["Home"]</MudNavLink>
+
+    @if (_canViewDashboards)
+    {
+        <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
+            @_localizer["Dashboard"]
+        </MudNavLink>
+    }
+
+    @if (_canViewExternalApplications || _canViewDocumentTypes || _canViewDocuments || _canViewDocumentMatchings)
+    {
+        <MudNavGroup Title=@_localizer["Document Management"] @bind-Expanded="listeMenu[0]" onclick="@(()=>changeExpend(0))" Icon="@Icons.Outlined.FolderSpecial" Color="Color.Error">
+            @if(_canViewExternalApplications)
+            {
+                <MudNavLink Href="/external-applications" Icon="@Icons.Material.Outlined.Apps">
+                    @_localizer["External Applications"]
+                </MudNavLink>
+            }
+            @if (_canViewDocumentTypes)
+            {
+                <MudNavLink Href="/document-types" Icon="@Icons.Material.Outlined.FolderOpen">
+                    @_localizer["Document Types"]
+                </MudNavLink>
+            }
+            @if (_canViewDocuments)
+            {
+                <MudNavLink Href="/document-store" Icon="@Icons.Material.Outlined.AttachFile">
+                    @_localizer["Document Store"]
+                </MudNavLink>
+            }
+            @if(_canViewDocumentMatchings)
+            {
+                <MudNavLink Href="/document-matchings" Icon="@Icons.Material.Outlined.FilePresent">
+                    @_localizer["Document Matchings"]
+                </MudNavLink>
+            }
+
+        </MudNavGroup>
+    }
+
+    @if (_canViewUsers || _canViewRoles || _canViewAuditTrails)
+    {
+
+        <MudNavGroup Title=@_localizer["Administrator"] @bind-Expanded="listeMenu[1]" onclick="@(()=>changeExpend(1))" Icon="@Icons.Outlined.VerifiedUser" Color="Color.Error">
+
+            @if (_canViewUsers)
+            {
+                <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
+                    @_localizer["Users"]
+                </MudNavLink>
+            }
+            @if (_canViewRoles)
+            {
+                <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Badge">
+                    @_localizer["Roles"]
+                </MudNavLink>
+            }
+            @if (_canViewAuditTrails)
+            {
+                <MudNavLink Href="/audit-trails" Icon="@Icons.Material.Outlined.Security">
+                    @_localizer["Audit Trails"]
+                </MudNavLink>
+            }
+            <MudNavLink Href="/swagger/index.html" Target="_blank" Icon="@Icons.Material.Outlined.Api">
+                @_localizer["API"]
+            </MudNavLink>
+        </MudNavGroup>
+    }
+</MudNavMenu>
+
+@code {
+    private ClaimsPrincipal _authenticationStateProviderUser;
+
+    private bool _canViewDashboards;
+    private bool _canViewExternalApplications;
+    private bool _canViewDocumentTypes;
+    private bool _canViewDocuments;
+    private bool _canViewDocumentMatchings;
+    private bool _canViewDocumentVersions;
+    private bool _canViewAuditTrails;
+    private bool _canViewRoles;
+    private bool _canViewUsers;
+
+
+    List<bool> listeMenu = new List<bool>{false,false,false};
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _authenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+        _canViewDashboards = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Dashboards.View)).Succeeded;
+        _canViewExternalApplications = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.ExternalApplications.View)).Succeeded;
+        _canViewDocumentTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.DocumentTypes.View)).Succeeded;
+        _canViewDocuments = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Documents.View)).Succeeded;
+        _canViewDocumentMatchings = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.DocumentMatchings.View)).Succeeded;
+        _canViewDocumentVersions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.DocumentVersions.View)).Succeeded;
+        _canViewAuditTrails = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.AuditTrails.View)).Succeeded;
+        _canViewRoles = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Roles.View)).Succeeded;
+        _canViewUsers = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Users.View)).Succeeded;
+    }   
+    
+    private void changeExpend(int i)
+    {
+        for(int k=0; k < listeMenu.Count; k++)
+        {
+            if(k!=i && listeMenu[k] == true)
+            {
+                listeMenu[k] = false;
+            }
+        }
+    }
+
+}

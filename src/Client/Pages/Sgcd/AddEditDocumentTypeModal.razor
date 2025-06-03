@@ -1,0 +1,60 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDocumentTypeModal> _localizer
+
+<EditForm Model="@AddEditDocumentTypeModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditDocumentTypeModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Document Type"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Document Type"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditDocumentTypeModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField ReadOnly For="@(() => AddEditDocumentTypeModel.Id)" @bind-Value="AddEditDocumentTypeModel.Id" Label="@_localizer["Id"]" Variant="Variant.Outlined" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="string" Label="@_localizer["External Application"]" For="@(() => AddEditDocumentTypeModel.ExternalApplication)" @bind-Value="AddEditDocumentTypeModel.ExternalApplication" ResetValueOnEmptyText="true"
+                                     SearchFunc="@SearchExternalApplications" Variant="Variant.Outlined" ToStringFunc="@(i => _applications.FirstOrDefault(a => a.Name == i)?.Name ?? string.Empty)" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditDocumentTypeModel.Name)" @bind-Value="AddEditDocumentTypeModel.Name" Label="@_localizer["Name"]" Variant="Variant.Outlined" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditDocumentTypeModel.Description)" @bind-Value="AddEditDocumentTypeModel.Description" Label="@_localizer["Description"]" Variant="Variant.Outlined" Lines="3"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudAutocomplete T="string" Label="@_localizer["Format"]" For="@(() => AddEditDocumentTypeModel.Format)" @bind-Value="AddEditDocumentTypeModel.Format" ResetValueOnEmptyText="true"
+                                     SearchFunc="@SearchDocumentFormats" Variant="Variant.Outlined" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditDocumentTypeModel.Id != 0)
+            {
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

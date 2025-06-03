@@ -1,0 +1,25 @@
+﻿@page "/home"
+@page "/"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Home> _localizer
+
+<MudContainer>
+    <MudGrid>
+        <MudItem xs="12" sm="12" md="12">
+            <div class="d-flex justify-center mt-4">
+                @*<MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 250px; height: 250px;" />*@
+                <img src="./media/infinity2.png" Style="width:200px; height:100px;" Size="Size.Large" />
+            </div>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Align="Align.Center" Typo="Typo.h4">@_localizer["Title"]</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="12"> 
+            <MudExpansionPanels>
+                <MudExpansionPanel Text="@_localizer["About"]" MaxHeight="150">
+                    <MudText Align="Align.Center" Typo="Typo.h6" Class="smaller">@_localizer["Description"]</MudText>
+                </MudExpansionPanel>
+            </MudExpansionPanels>
+        </MudItem>
+        <div style="margin:50px"></div>
+    </MudGrid>
+</MudContainer>

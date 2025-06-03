@@ -1,0 +1,59 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer
+
+<MudAppBar Elevation="25">
+    <img src="./media/Avatar.png" Style="width:50px; height:70px;" Size="Size.Medium" />
+    <MudText Typo="Typo.h6" Class="ml-4">SGCD</MudText>
+    <MudToolBar DisableGutters="true">
+        <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+    </MudToolBar>
+    <MudSpacer />
+    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+
+        <LanguageSelector />
+        <MudTooltip Text="@_localizer["Toggle right-to-left/left-to-right"]">
+            <MudIconButton Icon="@Icons.Material.Filled.FormatTextdirectionRToL" Color="Color.Inherit" OnClick="@((e) => RightToLeftToggle())" />
+        </MudTooltip>
+        <MudTooltip Text="@_localizer["Toggle Dark Mode"]">
+            <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => ToggleDarkMode())" />
+        </MudTooltip>
+
+    </MudHidden>
+    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+        <LanguageSelector />
+        <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" AnchorOrigin="Origin.TopRight">
+            <div class="px-2">
+                <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => ToggleDarkMode())" />
+            </div>
+
+            <MudText Typo="Typo.body2" Class="px-4 py-2"><b>@_localizer["Resources"]</b></MudText>
+        </MudMenu>
+    </MudHidden>
+    <MudMenu AnchorOrigin="_rightToLeft ? Origin.TopRight : Origin.TopLeft" Dense="true" Class="mt-1 ml-4">
+        <ActivatorContent>
+            @if (string.IsNullOrEmpty(ImageDataUrl))
+            {
+                <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Image="@ImageDataUrl" Style="height:50px; width:50px;"> </MudAvatar>
+            }
+        </ActivatorContent>
+        <ChildContent>
+            <UserCard Class="mt-n2" />
+            <MudDivider Class="mb-2" />
+            <MudListItem Text="@_localizer["Account"]" Href="/account" Icon="@Icons.Material.Outlined.Person" />
+            <MudListItem Text="@_localizer["Logout"]" Icon="@Icons.Material.Filled.Logout" OnClick="Logout" />
+        </ChildContent>
+    </MudMenu>
+</MudAppBar>
+<MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+    <NavMenu />
+</MudDrawer>
+<MudMainContent>
+    <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+        <CascadingValue Value="hubConnection">
+            @ChildContent
+        </CascadingValue>
+    </MudContainer>
+</MudMainContent>

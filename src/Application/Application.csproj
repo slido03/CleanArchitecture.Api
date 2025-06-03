@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>CleanArchitecture.Application</RootNamespace>
+    <AssemblyName>CleanArchitecture.Application</AssemblyName>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="LazyCache" Version="2.4.0" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\DocumentMatchings\Commands\AddEdit\" />
+    <Folder Include="Features\DocumentMatchings\Commands\Delete\" />
+    <Folder Include="Features\DocumentMatchings\Queries\GetAll\" />
+    <Folder Include="Features\DocumentMatchings\Queries\GetById\" />
+    <Folder Include="Features\DocumentMatchings\Queries\GetCount\" />
+    <Folder Include="Features\DocumentMatchings\Queries\GetByCentralizedDocument\" />
+    <Folder Include="Features\DocumentTypes\Commands\AddEdit\" />
+    <Folder Include="Features\DocumentTypes\Commands\Delete\" />
+    <Folder Include="Features\DocumentTypes\Queries\Export\" />
+    <Folder Include="Features\DocumentTypes\Queries\GetAll\" />
+    <Folder Include="Features\DocumentTypes\Queries\GetById\" />
+    <Folder Include="Features\DocumentTypes\Queries\GetAllByExternalApplication\" />
+    <Folder Include="Features\DocumentTypes\Queries\GetCount\" />
+    <Folder Include="Features\DocumentTypes\Queries\GetCountByExternalApplication\" />
+    <Folder Include="Features\DocumentVersions\Commands\AddEdit\" />
+    <Folder Include="Features\DocumentVersions\Commands\Delete\" />
+    <Folder Include="Features\DocumentVersions\Queries\GetAll\" />
+    <Folder Include="Features\DocumentVersions\Queries\GetAllByDocument\" />
+    <Folder Include="Features\DocumentVersions\Queries\GetCount\" />
+    <Folder Include="Features\DocumentVersions\Queries\GetById\" />
+    <Folder Include="Features\DocumentVersions\Queries\GetCountByDocument\" />
+    <Folder Include="Features\ExternalApplications\Commands\AddEdit\" />
+    <Folder Include="Features\ExternalApplications\Queries\Export\" />
+    <Folder Include="Features\ExternalApplications\Queries\GetAll\" />
+    <Folder Include="Features\ExternalApplications\Queries\GetById\" />
+    <Folder Include="Features\ExternalApplications\Queries\GetCount\" />
+    <Folder Include="Specifications\Sgcd\" />
+    <Folder Include="Validators\Features\DocumentMatchings\Commands\AddEdit\" />
+    <Folder Include="Validators\Features\DocumentVersions\Commands\AddEdit\" />
+    <Folder Include="Validators\Features\ExternalApplications\Commands\AddEdit\" />
+  </ItemGroup>
+
+</Project>
