@@ -11,6 +11,6 @@ namespace CleanArchitecture.Application.Features.DocumentVersions.Queries.GetAll
         public DateTime CreatedOn { get; set; }
         public string FilePath { get; set; }
         public Guid DocumentId { get; set; }
-        public string Document { get; set;}
+        public string Document { get; set; }
     }
 }

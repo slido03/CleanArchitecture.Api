@@ -1,20 +1,19 @@
+using Asp.Versioning;
 using CleanArchitecture.Application.Extensions;
 using CleanArchitecture.Infrastructure.Extensions;
 using CleanArchitecture.Server.Extensions;
+using CleanArchitecture.Server.Filters;
+using CleanArchitecture.Server.Managers.Preferences;
 using CleanArchitecture.Server.Middlewares;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
-using CleanArchitecture.Server.Filters;
-using CleanArchitecture.Server.Managers.Preferences;
 using Microsoft.Extensions.Localization;
-using Asp.Versioning;
+using System.IO;
 
 namespace CleanArchitecture.Server
 {

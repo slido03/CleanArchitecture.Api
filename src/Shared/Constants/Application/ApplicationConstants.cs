@@ -1,8 +1,4 @@
-﻿using CleanArchitecture.Shared.Constants.Permission;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using static CleanArchitecture.Shared.Constants.Application.ApplicationConstants.Formats;
+﻿using System.Collections.Generic;
 
 namespace CleanArchitecture.Shared.Constants.Application
 {

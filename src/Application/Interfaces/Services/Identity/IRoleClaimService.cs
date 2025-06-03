@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using CleanArchitecture.Application.Interfaces.Common;
+﻿using CleanArchitecture.Application.Interfaces.Common;
 using CleanArchitecture.Application.Requests.Identity;
 using CleanArchitecture.Application.Responses.Identity;
 using CleanArchitecture.Shared.Wrapper;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Interfaces.Services.Identity
 {

@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Shared.Settings;
-using System.Threading.Tasks;
 using CleanArchitecture.Shared.Wrapper;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Shared.Managers
 {

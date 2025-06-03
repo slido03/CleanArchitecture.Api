@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Application.Responses.Identity;
+﻿using CleanArchitecture.Application.Interfaces.Chat;
+using CleanArchitecture.Application.Models.Chat;
+using CleanArchitecture.Application.Responses.Identity;
 using CleanArchitecture.Shared.Wrapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Interfaces.Chat;
-using CleanArchitecture.Application.Models.Chat;
 
 namespace CleanArchitecture.Application.Interfaces.Services
 {

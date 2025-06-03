@@ -65,7 +65,7 @@ namespace CleanArchitecture.Infrastructure.Services.Identity
                 return await Result<TokenResponse>.FailAsync(_localizer["Invalid Credentials."]);
             }
 
-            if((user.LockoutEnd != null) && (user.LockoutEnd > DateTime.UtcNow)) 
+            if ((user.LockoutEnd != null) && (user.LockoutEnd > DateTime.UtcNow))
             {
                 return await Result<TokenResponse>.FailAsync(_localizer["Your account is locked out. Please wait a moment and try again or contact the administrator"]);
             }

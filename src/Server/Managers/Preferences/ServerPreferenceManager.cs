@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using CleanArchitecture.Application.Interfaces.Services.Storage;
+﻿using CleanArchitecture.Application.Interfaces.Services.Storage;
 using CleanArchitecture.Server.Settings;
 using CleanArchitecture.Shared.Constants.Storage;
 using CleanArchitecture.Shared.Settings;
 using CleanArchitecture.Shared.Wrapper;
 using Microsoft.Extensions.Localization;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Server.Managers.Preferences
 {

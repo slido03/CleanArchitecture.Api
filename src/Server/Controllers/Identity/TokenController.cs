@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Application.Interfaces.Services;
-using CleanArchitecture.Application.Interfaces.Services.Identity;
+﻿using CleanArchitecture.Application.Interfaces.Services.Identity;
 using CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

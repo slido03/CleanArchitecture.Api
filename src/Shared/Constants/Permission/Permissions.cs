@@ -100,14 +100,14 @@ namespace CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.RoleClaims.Search";
         }
 
-        
+
         [DisplayName("Communication")]
         [Description("Communication Permissions")]
         public static class Communication
         {
             public const string Chat = "Permissions.Communication.Chat";
         }
-        
+
 
         [DisplayName("Preferences")]
         [Description("Preferences Permissions")]

@@ -15,7 +15,6 @@ using CleanArchitecture.Infrastructure.Models.Identity;
 using CleanArchitecture.Infrastructure.Services;
 using CleanArchitecture.Infrastructure.Services.Identity;
 using CleanArchitecture.Infrastructure.Shared.Services;
-using CleanArchitecture.Server.Filters;
 using CleanArchitecture.Server.Localization;
 using CleanArchitecture.Server.Managers.Preferences;
 using CleanArchitecture.Server.Services;
@@ -251,9 +250,9 @@ namespace CleanArchitecture.Server.Extensions
         {
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
-           // services.Configure<SMSConfiguration>(configuration.GetSection("SMSConfiguration"));
+            // services.Configure<SMSConfiguration>(configuration.GetSection("SMSConfiguration"));
             services.AddTransient<IMailService, SMTPMailService>();
-           // services.AddTransient<ISMSService, SMSService>();
+            // services.AddTransient<ISMSService, SMSService>();
             return services;
         }
 

@@ -21,7 +21,7 @@ namespace CleanArchitecture.Application.Features.DocumentVersions.Queries.GetAll
         public string SearchString { get; set; }
         public string[] OrderBy { get; set; } //of the form fieldname fieldname [ascending|descending],fieldname [ascending|descending]...
 
-        public GetAllDocumentVersionsByDocumentQuery(Guid documentId, int pageNumber, int pageSize, string searchString, string orderBy) 
+        public GetAllDocumentVersionsByDocumentQuery(Guid documentId, int pageNumber, int pageSize, string searchString, string orderBy)
         {
             DocumentId = documentId;
             PageNumber = pageNumber;

@@ -1,6 +1,6 @@
 ﻿#nullable enable
-using System;
 using CleanArchitecture.Domain.Enums;
+using System;
 
 namespace CleanArchitecture.Domain.Contracts
 {

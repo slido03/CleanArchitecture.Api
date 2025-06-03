@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Application.Interfaces.Repositories;
+﻿using AutoMapper;
+using CleanArchitecture.Application.Interfaces.Repositories;
 using CleanArchitecture.Domain.Entities.Sgcd;
 using CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 
 namespace CleanArchitecture.Application.Features.DocumentVersions.Queries.GetById
 {
@@ -32,7 +32,7 @@ namespace CleanArchitecture.Application.Features.DocumentVersions.Queries.GetByI
 
         public async Task<Result<GetDocumentVersionByIdResponse>> Handle(GetDocumentVersionByIdQuery query, CancellationToken cancellationToken)
         {
-           var docVersion = await _unitOfWork.Repository<DocumentVersion>().GetByIdAsync(query.Id);
+            var docVersion = await _unitOfWork.Repository<DocumentVersion>().GetByIdAsync(query.Id);
             var mappedDocVersion = _mapper.Map<GetDocumentVersionByIdResponse>(docVersion);
             return await Result<GetDocumentVersionByIdResponse>.SuccessAsync(mappedDocVersion);
         }

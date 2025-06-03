@@ -10,7 +10,7 @@ namespace CleanArchitecture.Application.Features.DocumentVersions.Queries.GetCou
 {
     public class GetDocumentVersionCountQuery : IRequest<Result<long>>
     {
-        public GetDocumentVersionCountQuery() 
+        public GetDocumentVersionCountQuery()
         {
         }
     }
